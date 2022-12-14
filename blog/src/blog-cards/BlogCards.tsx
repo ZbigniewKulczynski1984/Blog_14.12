@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import { Blog } from '../../hooks/useBlogs';
+import { Blog } from '../hooks/useBlogs';
 
 interface BlogProps {
 	blog: Blog;
