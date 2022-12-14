@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { useBlogs } from '../../../hooks/useBlogs'
-import { BlogCard } from '../../blog-card/BlogCard';
-import { Navigation } from '../../navigation/Navigation';
+import { useBlogs } from '../../hooks/useBlogs'
+import { BlogCard } from '../blog-card/BlogCard';
+import { Navigation } from '../navigation/Navigation';
 
 export const BlogList = () => {
 const { blogsList } = useBlogs();
