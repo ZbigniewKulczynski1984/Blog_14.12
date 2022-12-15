@@ -1,28 +1,38 @@
-import { useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
-import { Blog } from '../hooks/useBlogs';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Blog } from '../../hooks/useBlogs';
+import { BlogCard } from '../blog-card/BlogCard';
 
-interface BlogProps {
-	blog: Blog;
-}
-
-export const BlogCard = ({ blog }: BlogProps) => {
-	const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
-
-	const handleClick = () => {
-		setIsDescriptionVisible(!isDescriptionVisible);
-	};
-
-	return (
-		<Card>
-			<Card.Img src={blog.img} />
-			<Card.Body>
-				<Card.Title>{blog.title}</Card.Title>
-				{isDescriptionVisible && <Card.Text>{blog.shortText}</Card.Text>}
-				<Button onClick={handleClick}>
-					{isDescriptionVisible ? 'Hide description' : 'Show description'}
-				</Button>
-			</Card.Body>
-		</Card>
-	);
+const blogMock: Blog = {
+	id: 1,
+	img: 'url_to_img',
+	longText: 'long_text_mock',
+	shortText: 'short_text_mock',
+	title: 'title_mock',
 };
+
+describe('BlogCard.tsx', () => {
+	test('blog img should be rendered', () => {
+		render(<BlogCard blog={blogMock} />);
+
+		const image = screen.getByRole('img');
+		expect(image).toBeInTheDocument();
+	});
+
+	test('Title is rendered', () => {
+		render(<BlogCard blog={blogMock} />);
+
+		const title = screen.getByText(/title_mock/i);
+		expect(title).toBeInTheDocument();
+	});
+
+	test('shortText is visible after click', () => {
+		render(<BlogCard blog={blogMock} />);
+
+		fireEvent.click(screen.getByRole('button'));
+		const shortText = screen.queryByText('short_text_mock');
+
+		expect(shortText).toBeInTheDocument();
+	});
+
+    
+});
