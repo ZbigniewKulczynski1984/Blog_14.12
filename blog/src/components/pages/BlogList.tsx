@@ -1,15 +1,16 @@
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Spinner } from 'react-bootstrap'
 import { useBlogs } from '../../hooks/useBlogs'
 import { BlogCard } from '../../blog-cards/BlogCards';
 import { Navigation } from '../navigation/Navigation';
 
 export const BlogList = () => {
-const { blogsList } = useBlogs();
+const { blogsList, isLoading } = useBlogs();
 
   return (
     <Container>
       <Navigation blogsCount={blogsList.length}/>
       <h1>My blog</h1>
+      {isLoading ? <Spinner /> : (
       <Container>
         <Row>
           {blogsList.length ? blogsList.map((blog, index) => (
@@ -20,6 +21,7 @@ const { blogsList } = useBlogs();
           {}
         </Row>
       </Container>
+      )}
     </Container>
   )
 }
