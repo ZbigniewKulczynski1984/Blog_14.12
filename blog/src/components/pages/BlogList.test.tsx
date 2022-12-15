@@ -13,4 +13,12 @@ describe('BlogList.tsx', () => {
         const title = await screen.findAllByText(/test title/i)
         expect(title.length).toBe(2)
     })
+
+    test('spinner is rendering', () => {
+		render(<BlogList />);
+
+		const spinner = screen.getByTestId('spinner');
+        expect(spinner).toBeInTheDocument()
+    })
+
 })

@@ -10,7 +10,7 @@ const { blogsList, isLoading } = useBlogs();
     <Container>
       <Navigation blogsCount={blogsList.length}/>
       <h1>My blog</h1>
-      {isLoading ? <Spinner /> : (
+      {isLoading ? <Spinner data-testid="spinner" /> : (
       <Container>
         <Row>
           {blogsList.length ? blogsList.map((blog, index) => (
