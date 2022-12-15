@@ -1,25 +1,16 @@
-import { Container, Row, Col } from 'react-bootstrap'
-import { useBlogs } from '../../../hooks/useBlogs'
-import { BlogCard } from '../../blog-card/BlogCard';
-import { Navigation } from '../../navigation/Navigation';
+import { render, screen } from '@testing-library/react'
+import { BlogList } from "../../components/pages/BlogList"
+import { server } from '../mocks/server'
 
-export const BlogList = () => {
-const { blogsList } = useBlogs();
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
 
-  return (
-    <Container>
-      <Navigation blogsCount={blogsList.length}/>
-      <h1>My blog</h1>
-      <Container>
-        <Row>
-          {blogsList.length ? blogsList.map((blog, index) => (
-            <Col>
-              <BlogCard blog={blog} key={index} />
-            </Col>
-          )) : <p>There is no blogs</p>}
-          {}
-        </Row>
-      </Container>
-    </Container>
-  )
-}
+describe('BlogList.tsx', () => {
+    test('should render no post message', async() => {
+        render(<BlogList />)
+
+        const title = await screen.findByText(/how to write test/i)
+        expect(title).toBeInTheDocument()
+    })
+})

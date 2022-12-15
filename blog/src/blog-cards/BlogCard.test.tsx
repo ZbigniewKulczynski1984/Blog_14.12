@@ -33,4 +33,6 @@ describe('BlogCard.tsx', () => {
 
 		expect(shortText).toBeInTheDocument();
 	});
+
+    
 });
