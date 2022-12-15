@@ -11,6 +11,13 @@ export const handlers = [
 					longText: 'test short text',
 					img: 'url',
 				},
+				{
+					id: 2,
+					title: 'test title',
+					shortText: 'test short text',
+					longText: 'test short text',
+					img: 'url',
+				},
 			])
 		);
 	}),
