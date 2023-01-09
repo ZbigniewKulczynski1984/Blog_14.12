@@ -20,7 +20,7 @@ export const Counter = () => {
 		<Container>
 			<h2>Counter</h2>
 			<Button onClick={handleMinusClick}>-</Button>
-			<span>{value}</span>
+			<span data-testid="counterValue">{value}</span>
 			<Button onClick={handlePlusClick}>+</Button>
 			<Container>
 				<Button onClick={handleResetClick}>Reset</Button>
