@@ -32,7 +32,7 @@ export const Counter = () => {
       <span>Initial value:</span>
       <input type="number" data-testid="initialValue" value={initialValue} onChange={event => setInitialValue(parseInt(event.target.value))}/>
       <span>Step value:</span>
-      <input type="number" min={1} max={maxValue} value={step} onChange={event => setStep(parseInt(event.target.value))}/>
+      <input type="number" data-testid="stepValue" min={1} max={maxValue} value={step} onChange={event => setStep(parseInt(event.target.value))}/>
       <Container>
         <Button onClick={handleMinusClick}>-</Button>
         <span data-testid="counterValue">{value}</span>
