@@ -79,4 +79,27 @@ describe('Counter.tsx', () => {
 	
 		expect(parseInt(counterValue.innerHTML)).toEqual(15);
 	  });
+
+	  test("should set initial value 5", () => {
+		render (<Counter />);
+		const stepValue = screen.getByTestId("stepValue");
+	
+		const counterValue = screen.getByTestId("counterValue");
+	
+		fireEvent.change(screen.getByTestId("initialValue"), {
+		  target: { value: "10" },
+		});
+	
+		fireEvent.change(stepValue, {
+		  target: { value: "5" },
+		});
+	
+		const plusButton = screen.getByRole("button", {
+		  name: /\-/i,
+		});
+	
+		fireEvent.click(plusButton);
+	
+		expect(parseInt(counterValue.innerHTML)).toEqual(5);
+	  });
 });
